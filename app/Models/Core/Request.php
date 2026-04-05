@@ -1,16 +1,16 @@
 <?php
-class models_Request{
+class models_Core_Request{
     public function get($key,$default=null){
-        if(!$_GET[$key]){
-            return $default;
+        if(array_key_exists($key,$_GET)){
+            return $_GET[$key];
         }
-        return $_GET[$key];
+        return $default;
     }
     public function post($key,$default=null){
-        if(!$_POST[$key]){
-            return $default;
+        if(array_key_exists($key,$_POST)){
+            return $_POST[$key];
         }
-        return $_POST[$key];
+        return $default;
     }
 
     public function input($key,$default=null){
