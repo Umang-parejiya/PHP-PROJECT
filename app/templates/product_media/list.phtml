@@ -1,0 +1,41 @@
+<?php include 'app/templates/menu.phtml'; ?>
+
+<h2>Manage Product Media</h2>
+<a href="index.php?c=product_media&a=edit">Add Product Media</a>
+<br><br>
+
+<table border="1" width="100%">
+    <tr>
+        <th>ID</th>
+        <th>Product ID</th>
+        <th>File Path</th>
+        <th>Alt Text</th>
+        <th>Sort Order</th>
+        <th>Is Primary</th>
+        <th>Created Date</th>
+        <th>Updated Date</th>
+        <th>Actions</th>
+    </tr>
+    <?php if (!empty($data)): ?>
+        <?php foreach ($data as $row): ?>
+            <tr>
+                <td><?php echo $row->product_media_id; ?></td>
+                <td><?php echo $row->product_id; ?></td>
+                <td><?php echo htmlspecialchars($row->file_path); ?></td>
+                <td><?php echo htmlspecialchars($row->alt_text); ?></td>
+                <td><?php echo $row->sort_order; ?></td>
+                <td><?php echo $row->is_primary == 1 ? 'Yes' : 'No'; ?></td>
+                <td><?php echo $row->created_date; ?></td>
+                <td><?php echo $row->updated_date; ?></td>
+                <td>
+                    <a href="index.php?c=product_media&a=edit&id=<?php echo $row->product_media_id; ?>">Edit</a> |
+                    <a href="index.php?c=product_media&a=delete&id=<?php echo $row->product_media_id; ?>">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="9">No records found.</td>
+        </tr>
+    <?php endif; ?>
+</table>

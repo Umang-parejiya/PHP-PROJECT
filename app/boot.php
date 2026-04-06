@@ -5,6 +5,7 @@ require_once __DIR__ . "/Controllers/Product.php";
 require_once __DIR__ . "/Controllers/Category.php";
 require_once __DIR__ . "/Controllers/Customer_group.php";
 require_once __DIR__ . "/Controllers/Customer.php";
+require_once __DIR__ . "/Controllers/Product_media.php";
 
 class Boot extends Controllers_Core_Base{
     public static function init(){
