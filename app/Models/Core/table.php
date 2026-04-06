@@ -36,6 +36,7 @@ class models_Core_Table{
     public function load($value, $column = null)
     {
         $column = $column ?? $this->primaryKey;
+        $value = $this->db->escape($value);
 
         $query = "select * from {$this->tableName} where $column = '$value' limit 1";
         $row = $this->db->fetchRow($query);
@@ -75,7 +76,7 @@ class models_Core_Table{
     {
         $column = implode(",", array_keys($this->data));
         $values = array_map(function ($v) {
-            return "'$v'";
+            return "'" . $this->db->escape($v) . "'";
         }, array_values($this->data));
 
         $values = implode(",", $values);
@@ -104,6 +105,7 @@ class models_Core_Table{
 
         $set = [];
         foreach ($data as $key => $value) {
+            $value = $this->db->escape($value);
             $set[] = "$key='$value'";
         }
 
